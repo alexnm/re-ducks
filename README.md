@@ -202,6 +202,6 @@ What I like about the `ducks approach` is that it does not enforce any abstracti
 
 =======================================
 
-Hope you find something useful in this!
+Hope you find something useful in this! Ping me on [twitter](https://twitter.com/alexnmoldovan), i'd be more than happy to hear your thoughts!
 
 Alex M
