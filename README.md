@@ -38,6 +38,8 @@ NOTE: I'm using `export default` in most of the cases, don't want to get into de
 
 ### Types
 Let's start from defining the constants we will use as redux action types. In order to keep the naming simple, let's call the file `types.js`, because `constants.js` is a bit too generic.
+
+Our examples will model a real duck.
 ```javascript
 const QUACK = "app/duck/QUACK";
 const SWIM = "app/duck/SWIM";
@@ -74,7 +76,7 @@ NOTE: Trying to impose a bit of structure to the actions object, the `type/paylo
 ### Operations
 In a simple application, you can easily dispatch simple actions and use the reducers to manage the state. However, in a more complex app you need to use some sort of middleware to handle more complex interactions. In our case, we use [redux-thunk](https://github.com/gaearon/redux-thunk).
 
-The operations file define the `interface` of our duck. You can reason about it like this: 1 operation = X actions dispatched. This makes each operation function either **a thunk** in case it needs to dispatch multiple actions, or simply **a link** to an action already defined in `actions.js`.
+The operations file define the `interface` for our duck. You can reason about it like this: 1 operation = X actions dispatched. This makes each operation function either **a thunk** in case it needs to dispatch multiple actions, or simply **a link** to an action already defined in `actions.js`.
 
 This separation should work with whatever middleware/lib you are using for handling chained/linked/delayed operations.
 ```javascript
@@ -99,8 +101,9 @@ export default {
 NOTE: [redux-observables](https://github.com/redux-observable/redux-observable) uses the idea of `epics` which I also like. Feel free to suggest names for this file by dropping a line on **[twitter](https://twitter.com/alexnmoldovan)**.
 
 ### Reducers
-It's a good practice to try to always keep your **state shape** in a comment above the reducers, just to have an overview.
-In case the state shape is more complex, you should break the reducers into multiple smaller parts that deal with a slice of the state, then combine them at the end.
+It's a good practice to keep your **state shape** in a comment above the reducers, just to have an overview.
+
+In case the state shape is more complex, you should break the reducers into multiple smaller functions that deal with a slice of the state, then combine them at the end.
 ```javascript
 import { combineReducers } from "redux";
 import types from "./types";
@@ -138,9 +141,9 @@ export default reducer;
 NOTE: Let's keep it simple for now with `switch` statements and abstract later.
 
 ### Selectors
-In case the state shape is more complex you need selectors in order to map parts of the state to your props or in order to derive some state on request, also for your components.
+In case your state shape is more complex you need selectors in order to map parts of the `state` to your `props` or in order to derive some data for your components from the current state.
 
-These are the functions like: `getVisibleTodos`, `isUserAuthenticated`, etc. that take the current app state and return some data based on the state.
+These are the functions like: `getVisibleTodos`, `isUserAuthenticated`, etc. that take the current app state and return some derived data.
 ```javascript
 function checkIfDuckIsInRange( state ) {
     return state.duck.distance > 1000;
@@ -150,7 +153,7 @@ export default {
     checkIfDuckIsInRange
 };
 ```
-NOTE: Selector functions will be used outside the duck folder, so they are part of the **mandatory interface** of the duck. 
+NOTE: Selector functions will be used outside the duck folder, so they are part of the **interface** of the duck. 
 
 ### Index
 This file, from a module perspective, behaves as the duck file form the original proposal.
@@ -174,7 +177,7 @@ export default reducer;
 ### Tests
 One of the main advantages of `redux` is that you can easily do unit tests for your `reducers`, `action creators` and `selectors`. And with a small effort, you can do the same for the `operations`.
 
-Ultimately, this split we made is also helping you see what you need to test inside each duck. This example is using `mocha` and `expect.js`.
+Ultimately, this split proposed here is also helping you see what you need to test inside each duck. This example is using `mocha` and `expect.js`.
 ```javascript
 import expect from "expect.js";
 import reducer from "./reducers";
