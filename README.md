@@ -1,5 +1,4 @@
-#re-ducks (WORK IN PROGRESS)
-
+#re-ducks
 The original proposal for the [ducks modular approach](https://github.com/erikras/ducks-modular-redux) in building redux apps is really powerful, but as I started using the approach I noticed that the single duck files become harder and harder to maintain and read. So I want to propose an extended approach that works great in my opinion for medium-large scale codebases.
 
 ## The duck rules
@@ -10,7 +9,7 @@ A duck:
 * MAY export its action types as `UPPER_SNAKE_CASE`, if an external reducer needs to listen for them, or if it is a published reusable library
 
 ## The extended approach
-tl;dr - here's how a `duck` folder would look like:
+Here's how a **duck** folder would look like:
 ```
 duck/
 ├── actions.js
@@ -22,27 +21,117 @@ duck/
 ├── types.js
 ├── utils.js
 ```
+NOTE: Each concept from your app will have a similar folder.
 
 ### General rules
 A duck folder:
-* MUST have an index.js file that exports according to the original duck rules.
-* MUST keep code with similar purpose in the same file (reducers, selectors, actions, etc.)
-* MUST contain the tests related to the duck
+* MUST contain the **entire logic** for handling **only ONE** concept in your app, ex: product, cart, session, etc.
+* MUST have an `index.js` file that exports according to the original duck rules.
+* MUST keep code with similar purpose in the same file, ex: reducers, selectors, actions, etc.
+* MUST contain the **tests** related to the duck.
 
 This structure does not require any libraries or abstractions other than `redux` and `redux-thunk` at a minimum (but can work with `redux-saga` or `redux-observables`)
 
+NOTE: I'm using `export default` in most of the cases, don't want to get into details there, you can compose your module as you wish.
+
 ### Types
 Let's start from defining the constants we will use as redux action types. In order to keep the naming simple, let's call the file `types.js`, because `constants.js` is a bit too generic.
-The types are defined and exported as named exports
-```
-code
+```javascript
+const QUACK = "app/duck/QUACK";
+const SWIM = "app/duck/SWIM";
+
+export default {
+    QUACK,
+    SWIM
+};
 ```
 
 ### Actions
+It's important to be consistent when defining actions, so let's always export functions from this file, we don't care if the action needs any input from the outside to build the payload or not.
+```javascript
+import types from "./types";
+
+const quack = ( ) => ( {
+    type: types.QUACK
+} );
+
+const swim = ( distance ) => ( {
+    type: types.SWIM,
+    payload: {
+        distance
+    }
+} );
+
+export default {
+    swim,
+    quack
+};
+```
+NOTE: Trying to impose a bit of structure to the actions object, I think the `type/payload` approach is pretty popular.
 
 ### Operations
+In a simple application, you can easily dispatch simple actions and use the reducers to manage the state. However, in a more complex app you need to use some sort of middleware to handle more complex interactions. In our case, we use [redux-thunk](https://github.com/gaearon/redux-thunk).
+
+The operations file define the `interface` of our duck. You can reason about it like this: 1 operation = X actions dispatched. This makes each operation function either **a thunk** in case it needs to dispatch multiple actions, or simply **a link** to an action already defined in `actions.js`.
+```javascript
+import actions from "./actions";
+
+// This is a link to an action defined in actions.js.
+const simpleQuack = actions.quack;
+
+// This is a thunk which dispatches multiple actions from actions.js
+const complexQuack = ( distance ) => ( dispatch ) => {
+    dispatch( actions.quack( ) ).then( ( ) => {
+        dispatch( actions.swim( distance ) );
+        dispatch( /* any action */ );
+    } );
+}
+
+export default {
+    simpleQuack,
+    complexQuack
+};
+```
+NOTE: [redux-observables](https://github.com/redux-observable/redux-observable) uses the idea of `epics` which I also like. Feel free to suggest names for this file by dropping a line on **[twitter](https://twitter.com/alexnmoldovan)**.
 
 ### Reducers
+It's a good practice to try to always keep your **state shape** in a comment above the reducers, just to have an overview.
+In case the state shape is more complex, you should break the reducers into multiple smaller parts that deal with a slice of the state, then combine them at the end.
+```javascript
+import { combineReducers } from "redux";
+import types from "./types";
+
+/* State Shape
+{
+    quacking: bool,
+    distance: number
+}
+*/
+
+const quackReducer = ( state = false, action ) => {
+    switch( action.type ) {
+        case types.QUACK: return true;
+        /* ... */
+        default: return state;
+    }
+}
+
+const distanceReducer = ( state = 0, action ) => {
+    switch( action.type ) {
+        case types.SWIM: return state + action.payload.distance;
+        /* ... */
+        default: return state;
+    }
+}
+
+const reducer = combineReducers( {
+    quacking: quackReducer,
+    distance: distanceReducer
+} );
+
+export default reducer;
+```
+NOTE: Let's keep it simple for now with `switch` statements and abstract later.
 
 ### Selectors
 
