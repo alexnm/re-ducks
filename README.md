@@ -1,5 +1,5 @@
 #re-ducks
-Before starting read more about the original [ducks modular approach proposal](https://github.com/erikras/ducks-modular-redux). When trying to embrace this idea in medium-large scale codebases I noticed that the single duck file become harder and harder to maintain and read. So I want to propose an extended approach that works great when you go beyond a todo-app.
+Before starting, read more about the original [ducks modular approach proposal](https://github.com/erikras/ducks-modular-redux). When trying to embrace this idea in medium-large scale codebases I noticed that the single duck file become harder and harder to maintain and read. So I want to propose an extended approach that works great when you go beyond a todo-app.
 
 ## The duck rules
 To recap, a duck:
