@@ -200,5 +200,8 @@ I've been working almost 2 years now in the React ecosystem and I found that abs
 
 What I like about the `ducks approach` is that it does not enforce any abstraction on you. It's simply a better way of organizing your app. You have the complete freedom to build your own helper functions or use utility packages that have those functions.
 
+=======================================
+
 Hope you find something useful in this!
+
 Alex M
