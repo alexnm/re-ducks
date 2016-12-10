@@ -1,14 +1,14 @@
-#re-ducks
-Before starting, read more about the original [ducks modular approach proposal](https://github.com/erikras/ducks-modular-redux). When trying to embrace this idea in medium-large scale codebases I noticed that the single duck file become harder and harder to maintain and read. So I want to propose an extended approach that works great when you go beyond a todo-app.
+Before starting, read more about the original [ducks modular approach proposal](https://github.com/erikras/ducks-modular-redux). When trying to embrace this idea in medium-large scale codebases I noticed that the single duck file becomes harder and harder to maintain and read. 
 
-## The duck rules
+So I want to propose an extended approach that works great when you go beyond a todo-app.
+
 To recap, a duck:
 * MUST `export default` a function called `reducer()`
 * MUST `export` its action creators as functions
 * MUST have action types in the form `npm-module-or-app/reducer/ACTION_TYPE`
 * MAY export its action types as `UPPER_SNAKE_CASE`, if an external reducer needs to listen for them, or if it is a published reusable library
 
-## The extended approach
+## Enter re-ducks
 Instead of duck files, we use duck folders.
 
 Here's how a **duck** folder would look like:
