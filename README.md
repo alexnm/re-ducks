@@ -24,7 +24,7 @@ duck/
 ```
 
 ### General rules
-A fuck folder:
+A duck folder:
 * MUST have an index.js file that exports according to the original duck rules.
 * MUST keep code with similar purpose in the same file (reducers, selectors, actions, etc.)
 * MUST contain the tests related to the duck
@@ -51,4 +51,4 @@ code
 ### Tests
 
 ### A word on abstractions!
-While working a good 2 years now in the React ecosystem, I found that abstractions
+While working a good 2 years now in the React ecosystem, I found that abstractions are good when you design them and are your enemies when you take them from others. So while I understand the idea of reducing boilerplate, writing less code, reusing structures, keep in mind that any abstraction that you take for granted will eventually become a burden for the project.
