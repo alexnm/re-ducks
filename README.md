@@ -200,6 +200,9 @@ I've been working almost 2 years now in the React ecosystem and I found that abs
 
 What I like about the `ducks approach` is that it does not enforce any abstraction on you. It's simply a better way of organizing your app. You have the complete freedom to build your own helper functions or use utility packages that have those functions.
 
+### Complete codebase example
+You can find a react-redux-example codebase using the re-ducks approach [HERE](https://github.com/FortechRomania/react-redux-complete-example), just keep in mind that this is a work-in-progress repo.
+
 =======================================
 
 Hope you find something useful in this! Ping me on [twitter](https://twitter.com/alexnmoldovan), i'd be more than happy to hear your thoughts!
