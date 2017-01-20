@@ -146,8 +146,8 @@ In case your state shape is more complex you need selectors in order to map part
 
 These are the functions like: `getVisibleTodos`, `isUserAuthenticated`, etc. that take the current app state and return some derived data.
 ```javascript
-function checkIfDuckIsInRange( state ) {
-    return state.duck.distance > 1000;
+function checkIfDuckIsInRange( duck ) {
+    return duck.distance > 1000;
 }
 
 export default {
