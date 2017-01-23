@@ -203,6 +203,8 @@ What I like about the `ducks approach` is that it does not enforce any abstracti
 ### Complete codebase example
 You can find a react-redux-example codebase using the re-ducks approach [HERE](https://github.com/FortechRomania/react-redux-complete-example), just keep in mind that this is a work-in-progress repo.
 
+Read more about [the reasoning behind re-ducks](https://medium.com/@alexnm/scaling-your-redux-app-with-ducks-6115955638be#.4ppptx7oq)
+
 =======================================
 
 Hope you find something useful in this! Ping me on [twitter](https://twitter.com/alexnmoldovan), i'd be more than happy to hear your thoughts!
