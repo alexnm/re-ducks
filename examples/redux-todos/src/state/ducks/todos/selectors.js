@@ -1,12 +1,14 @@
-import types from "./types";
+import CONSTANTS from "./constants";
 
 const getVisibleTodos = (todos, filter) => {
+  console.log(todos);
+  console.log(filter);
   switch (filter) {
-    case types.SHOW_ALL:
+    case CONSTANTS.SHOW_ALL:
       return todos;
-    case types.SHOW_COMPLETED:
+    case CONSTANTS.SHOW_COMPLETED:
       return todos.filter(t => t.completed);
-    case types.SHOW_ACTIVE:
+    case CONSTANTS.SHOW_ACTIVE:
       return todos.filter(t => !t.completed);
     default:
       throw new Error("Unknown filter: " + filter);

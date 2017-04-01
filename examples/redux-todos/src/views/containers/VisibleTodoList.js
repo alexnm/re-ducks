@@ -3,7 +3,10 @@ import { todosOperations, todosSelectors } from "../../state/ducks/todos";
 import TodoList from "../components/TodoList";
 
 const mapStateToProps = state => ({
-  todos: todosSelectors.getVisibleTodos(state.todos, state.visibilityFilter)
+  todos: todosSelectors.getVisibleTodos(
+    state.todosState.todos,
+    state.todosState.visibilityFilter
+  )
 });
 
 const mapDispatchToProps = {

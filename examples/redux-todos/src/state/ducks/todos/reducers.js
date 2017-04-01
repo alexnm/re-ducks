@@ -1,4 +1,5 @@
 import { combineReducers } from "redux";
+import CONSTANTS from "./constants";
 import types from "./types";
 /* State shape
 state: {
@@ -43,7 +44,7 @@ const todos = (state = [], action) => {
   }
 };
 
-const visibilityFilter = (state = `types.SHOW_ALL`, action) => {
+const visibilityFilter = (state = CONSTANTS.SHOW_ALL, action) => {
   switch (action.type) {
     case types.SET_VISIBILITY_FILTER:
       return action.filter;
@@ -53,8 +54,8 @@ const visibilityFilter = (state = `types.SHOW_ALL`, action) => {
 };
 
 const todosReducer = combineReducers({
-  todos: todos,
-  visibilityFilter: visibilityFilter
+  todos,
+  visibilityFilter
 });
 
 export default todosReducer;
