@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import { setVisibilityFilter } from "../actions";
+import { todosOperations } from "../../state/ducks/todos";
 import Link from "../components/Link";
 
 const mapStateToProps = (state, ownProps) => ({
@@ -8,7 +8,7 @@ const mapStateToProps = (state, ownProps) => ({
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
   onClick: () => {
-    dispatch(setVisibilityFilter(ownProps.filter));
+    dispatch(todosOperations.setVisibilityFilter(ownProps.filter));
   }
 });
 
