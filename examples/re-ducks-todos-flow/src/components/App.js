@@ -1,4 +1,7 @@
 import React, { Component } from "react";
+import Footer from "./Footer";
+import AddTodo from "../containers/AddTodo";
+import VisibleTodoList from "../containers/VisibleTodoList";
 import logo from "./logo.svg";
 import "./App.css";
 
@@ -13,6 +16,9 @@ class App extends Component {
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
+        <AddTodo />
+        <VisibleTodoList />
+        <Footer />
       </div>
     );
   }
