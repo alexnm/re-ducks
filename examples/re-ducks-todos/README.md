@@ -1,5 +1,5 @@
 # Re-ducks Todos Example
-This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app) and is a translation of the [Redux Todos example](https://github.com/reactjs/redux/tree/master/examples/todos).
+This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app) and is a translation of the [Redux Todos example](https://github.com/reactjs/redux/tree/master/examples/todos) using the re-ducks modular approach.
 
 ## Translatino changes to note
 tldr; watch your state shape!
