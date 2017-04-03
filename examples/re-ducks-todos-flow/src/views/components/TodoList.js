@@ -1,11 +1,14 @@
 // @flow
+// external imports
 import React from "react";
+// operations, selectors & types
+import todosTypes from "../../state/ducks/todos";
+// containers & components
 import Todo from "./Todo";
-import type { Todos, Id } from "../types";
 
 export type Props = {
-  todos: Todos,
-  onTodoClick: (id: Id) => void
+  todos: todosTypes.Todos,
+  onTodoClick: (id: todosTypes.Id) => void
 };
 
 const TodoList = ({ todos, onTodoClick }: Props) => (

@@ -1,18 +1,21 @@
 // @flow
+// external imports
 import React from "react";
 import { render } from "react-dom";
-import { createStore } from "redux";
-import { Provider } from "react-redux";
-import App from "./components/App";
-import reducer from "./reducers";
-import type { Store } from "./types";
+import { Provider as ReduxProvider } from "react-redux";
+// store & types
+import configureStore from "./state/store";
+import todosTypes from "./state/ducks/todos";
+// containers & components
+import App from "./views/App";
+// css & assets
 import "./index.css";
 
-const store: Store = createStore(reducer);
+const reduxStore: todosTypes.Store = configureStore(window.REDUX_INITIAL_DATA);
 
 render(
-  <Provider store={store}>
+  <ReduxProvider store={reduxStore}>
     <App />
-  </Provider>,
+  </ReduxProvider>,
   document.getElementById("root")
 );

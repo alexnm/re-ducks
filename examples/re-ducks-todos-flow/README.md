@@ -28,10 +28,12 @@ This is due to the fact that `/src/state/ducks/index.js` exports all the reducer
 Because of this state shape change, the selectors given to the `mapStateToProps` method must be changed to access the correct level of the state. For example, in the `VisibleTodoList` container.
 
 ```js
-const mapStateToProps = state => ({
-  todos: todosSelectors.getVisibleTodos(
-    state.todosState.todos,
-    state.todosState.visibilityFilter
-  )
-});
+const mapStateToProps = (state: todosTypes.todosState) => {
+  return {
+    todos: todosSelectors.getVisibleTodos(
+      state.todosState.todos,
+      state.todosState.visibilityFilter
+    )
+  };
+};
 ```

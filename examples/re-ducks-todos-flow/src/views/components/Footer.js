@@ -1,5 +1,7 @@
 // @flow
+// external imports
 import React from "react";
+// containers & components
 import FilterLink from "../containers/FilterLink";
 
 const Footer = () => (

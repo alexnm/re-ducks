@@ -1,11 +1,13 @@
 // @flow
+// external imports
 import React from "react";
-import type { Text } from "../types";
+// operations, selectors & types
+import todosTypes from "../../state/ducks/todos";
 
 export type Props = {
   onClick: () => void,
   completed: boolean,
-  text: Text
+  text: todosTypes.Text
 };
 
 const Todo = ({ onClick, completed, text }: Props) => (

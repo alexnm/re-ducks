@@ -1,5 +1,5 @@
 // @flow
-import type { Id, Text, VisibilityFilter, Action } from "../types";
+import type { Id, Text, VisibilityFilter, Action } from "./types";
 
 let nextTodoId: Id = 0;
 
@@ -23,4 +23,10 @@ export const toggleTodo = (id: Id): Action => {
     type: "TOGGLE_TODO",
     id
   };
+};
+
+export default {
+  addTodo,
+  setVisibilityFilter,
+  toggleTodo
 };

@@ -1,7 +1,10 @@
+// external imports
 import React, { Component } from "react";
-import Footer from "./Footer";
-import AddTodo from "../containers/AddTodo";
-import VisibleTodoList from "../containers/VisibleTodoList";
+// containers & components
+import AddTodo from "./containers/AddTodo";
+import Footer from "./components/Footer";
+import VisibleTodoList from "./containers/VisibleTodoList";
+// css & assets
 import logo from "./logo.svg";
 import "./App.css";
 
@@ -14,7 +17,7 @@ class App extends Component {
           <h2>Welcome to React Redux Todos with Flow</h2>
         </div>
         <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
+          Todos
         </p>
         <AddTodo />
         <VisibleTodoList />

@@ -1,12 +1,14 @@
 // @flow
+// external imports
 import React from "react";
 import { connect } from "react-redux";
-import { addTodo } from "../actions";
-import type { Dispatch } from "../types";
 import type { Connector } from "react-redux";
+// operations & types
+import { todosOperations } from "../../state/ducks/todos";
+import todosTypes from "../../state/ducks/todos";
 
 type Props = {
-  dispatch: Dispatch
+  dispatch: todosTypes.Dispatch
 };
 
 const AddTodo = ({ dispatch }) => {
@@ -20,7 +22,7 @@ const AddTodo = ({ dispatch }) => {
           if (!input.value.trim()) {
             return;
           }
-          dispatch(addTodo(input.value));
+          dispatch(todosOperations.addTodo(input.value));
           input.value = "";
         }}
       >
