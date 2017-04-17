@@ -1,5 +1,5 @@
 # Building on the duck legacy
-Before starting, read more about the original [ducks modular approach proposal](https://github.com/erikras/ducks-modular-redux). When trying to embrace this idea in medium-large scale codebases I noticed that the single duck file becomes harder and harder to maintain and read. 
+Before starting, read more about the original [ducks modular approach proposal](https://github.com/erikras/ducks-modular-redux). When trying to embrace this idea in medium-large scale codebases I noticed that the single duck file becomes harder and harder to maintain and read.
 
 So I want to propose an extended approach that works great when you go beyond a todo-app.
 
@@ -154,7 +154,7 @@ export default {
     checkIfDuckIsInRange
 };
 ```
-NOTE: Selector functions will be used outside the duck folder, so they are part of the **interface** of the duck. 
+NOTE: Selector functions will be used outside the duck folder, so they are part of the **interface** of the duck.
 
 ### Index
 This file, from a module perspective, behaves as the duck file form the original proposal.
@@ -201,6 +201,8 @@ What I like about the `ducks approach` is that it does not enforce any abstracti
 
 ### Complete codebase example
 You can find a react-redux-example codebase using the re-ducks approach [HERE](https://github.com/FortechRomania/react-redux-complete-example), just keep in mind that this is a work-in-progress repo.
+
+Examples of the [redux](https://github.com/reactjs/redux/tree/master/examples) Todos examples have been translated to use the re-ducks approach and can be found [here](https://github.com/jthegedus/re-ducks-examples).
 
 Read more about [the reasoning behind re-ducks](https://medium.com/@alexnm/scaling-your-redux-app-with-ducks-6115955638be#.4ppptx7oq)
 
