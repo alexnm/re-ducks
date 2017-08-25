@@ -9,9 +9,16 @@ Optionally it exports the actions and types if they are needed in other ducks.
 
 import reducer from "./reducers";
 
-export { default as duckSelectors } from "./selectors";
-export { default as duckOperations } from "./operations";
-export { default as duckActions } from "./actions";
-export { default as duckTypes } from "./types";
+import * as duckSelectors from "./selectors";
+import * as duckOperations from "./operations";
+import * as duckActions from "./actions";
+import * as duckType from "./types";
+
+export {
+  duckSelectors,
+  duckOperations,
+  duckActions,
+  duckType
+};
 
 export default reducer;

@@ -6,7 +6,7 @@ Based on the state shape, multiple reducers might be defined in this file, combi
 */
 
 import { combineReducers } from "redux";
-import types from "./types";
+import * as types from "./types";
 
 /* State Shape
 {

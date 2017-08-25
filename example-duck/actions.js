@@ -5,7 +5,7 @@ HINT: Always use functions for consistency, don't export plain objects
 
 */
 
-import types from "./types";
+import * as types from "./types";
 
 const quack = ( ) => ( {
     type: types.QUACK
@@ -18,7 +18,7 @@ const swim = ( distance ) => ( {
     }
 } );
 
-export default {
+export {
     swim,
     quack
 };

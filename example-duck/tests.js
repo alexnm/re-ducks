@@ -8,7 +8,7 @@ Example is using mocha and expect.js, but you can use any testing lib/framework/
 
 import expect from "expect.js";
 import reducer from "./reducers";
-import actions from "./actions";
+import * as actions from "./actions";
 
 describe( "duck reducer", function( ) {
     describe( "quack", function( ) {
