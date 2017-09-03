@@ -6,7 +6,7 @@ Complex operations involve returning a thunk that dispatches multiple actions in
 
 */
 
-import actions from "./actions";
+import * as actions from "./actions";
 
 const simpleQuack = actions.quack;
 
@@ -17,7 +17,7 @@ const complexQuack = ( distance ) => ( dispatch ) => {
     } );
 }
 
-export default {
+export {
     simpleQuack,
     complexQuack
 };

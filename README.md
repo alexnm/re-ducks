@@ -50,7 +50,7 @@ Our examples will model a real duck.
 const QUACK = "app/duck/QUACK";
 const SWIM = "app/duck/SWIM";
 
-export default {
+export {
     QUACK,
     SWIM
 };
@@ -59,7 +59,7 @@ export default {
 ### Actions
 It's important to be consistent when defining actions, so let's always export functions from this file, we don't care if the action needs any input from the outside to build the payload or not.
 ```javascript
-import types from "./types";
+import * as types from "./types";
 
 const quack = ( ) => ( {
     type: types.QUACK
@@ -72,7 +72,7 @@ const swim = ( distance ) => ( {
     }
 } );
 
-export default {
+export {
     swim,
     quack
 };
@@ -86,7 +86,7 @@ The operations file define the `interface` for our duck. You can reason about it
 
 This separation should work with whatever middleware/lib you are using for handling chained/linked/delayed operations.
 ```javascript
-import actions from "./actions";
+import * as actions from "./actions";
 
 // This is a link to an action defined in actions.js.
 const simpleQuack = actions.quack;
@@ -99,7 +99,7 @@ const complexQuack = ( distance ) => ( dispatch ) => {
     } );
 }
 
-export default {
+export {
     simpleQuack,
     complexQuack
 };
@@ -112,7 +112,7 @@ It's a good practice to keep your **state shape** in a comment above the reducer
 In case the state shape is more complex, you should break the reducers into multiple smaller functions that deal with a slice of the state, then combine them at the end.
 ```javascript
 import { combineReducers } from "redux";
-import types from "./types";
+import * as types from "./types";
 
 /* State Shape
 {
@@ -155,7 +155,7 @@ function checkIfDuckIsInRange( duck ) {
     return duck.distance > 1000;
 }
 
-export default {
+export {
     checkIfDuckIsInRange
 };
 ```
@@ -169,9 +169,15 @@ This file, from a module perspective, behaves as the duck file form the original
 ```javascript
 import reducer from "./reducers";
 
-export { default as duckSelectors } from "./selectors";
-export { default as duckOperations } from "./operations";
-export { default as duckTypes } from "./types";
+import * as duckSelectors from "./selectors";
+import * as duckOperations from "./operations";
+import * as duckTypes from "./types";
+
+export {
+    duckSelectors,
+    duckOperations,
+    duckTypes
+};
 
 export default reducer;
 ```
@@ -183,7 +189,7 @@ Ultimately, this split proposed here is also helping you see what you need to te
 ```javascript
 import expect from "expect.js";
 import reducer from "./reducers";
-import actions from "./actions";
+import * as actions from "./actions";
 
 describe( "duck reducer", function( ) {
     describe( "quack", function( ) {

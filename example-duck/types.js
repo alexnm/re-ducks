@@ -7,7 +7,7 @@ You can use any convention you wish here, but the name should remain UPPER_SNAKE
 const QUACK = "app/duck/QUACK";
 const SWIM = "app/duck/SWIM";
 
-export default {
+export {
     QUACK,
     SWIM
 };

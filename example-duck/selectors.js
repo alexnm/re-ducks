@@ -10,7 +10,7 @@ function checkIfDuckIsInRange( state ) {
     return state.duck.distance > 1000;
 }
 
-export default {
+export {
     checkIfDuckIsInRange
 };
 
