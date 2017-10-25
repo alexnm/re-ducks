@@ -36,7 +36,7 @@ A duck folder:
 * MUST contain the **entire logic** for handling **only ONE** concept in your app, ex: product, cart, session, etc.
 * MUST have an `index.js` file that exports according to the original duck rules.
 * MUST keep code with similar purpose in the same file, ex: reducers, selectors, actions, etc.
-* MUST contain the **tests** related to the duck.
+* MAY contain the **tests** related to the duck.
 
 This structure does not require any libraries or abstractions other than `redux` and `redux-thunk` at a minimum (but can work with `redux-saga` or `redux-observables`)
 
