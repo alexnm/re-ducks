@@ -15,13 +15,13 @@ Instead of duck files, we use duck folders.
 Here's how a **duck** folder would look like:
 ```
 duck/
+├── action-types.js
 ├── actions.js
 ├── index.js
 ├── operations.js
 ├── reducers.js
 ├── selectors.js
 ├── tests.js
-├── types.js
 ├── utils.js
 ```
 NOTE: Each concept from your app will have a similar folder.
@@ -42,8 +42,8 @@ This structure does not require any libraries or abstractions other than `redux`
 
 NOTE: I'm using `export default` in most of the cases, don't want to get into details there, you can compose your module as you wish.
 
-### Types
-Let's start from defining the constants we will use as redux action types. In order to keep the naming simple, let's call the file `types.js`, because `constants.js` is a bit too generic.
+### Action Types
+Let's start from defining the constants we will use as redux action types. In order to keep the naming simple, let's call the file `action-types.js`, because `constants.js` is a bit too generic.
 
 Our examples will model a real duck.
 ```javascript
@@ -59,14 +59,14 @@ export {
 ### Actions
 It's important to be consistent when defining actions, so let's always export functions from this file, we don't care if the action needs any input from the outside to build the payload or not.
 ```javascript
-import * as types from "./types";
+import * as actionTypes from "./action-types";
 
 const quack = ( ) => ( {
-    type: types.QUACK
+    type: actionTypes.QUACK
 } );
 
 const swim = ( distance ) => ( {
-    type: types.SWIM,
+    type: actionTypes.SWIM,
     payload: {
         distance
     }
@@ -112,7 +112,7 @@ It's a good practice to keep your **state shape** in a comment above the reducer
 In case the state shape is more complex, you should break the reducers into multiple smaller functions that deal with a slice of the state, then combine them at the end.
 ```javascript
 import { combineReducers } from "redux";
-import * as types from "./types";
+import * as actionTypes from "./action-types";
 
 /* State Shape
 {
@@ -123,7 +123,7 @@ import * as types from "./types";
 
 const quackReducer = ( state = false, action ) => {
     switch( action.type ) {
-        case types.QUACK: return true;
+        case actionTypes.QUACK: return true;
         /* ... */
         default: return state;
     }
@@ -131,7 +131,7 @@ const quackReducer = ( state = false, action ) => {
 
 const distanceReducer = ( state = 0, action ) => {
     switch( action.type ) {
-        case types.SWIM: return state + action.payload.distance;
+        case actionTypes.SWIM: return state + action.payload.distance;
         /* ... */
         default: return state;
     }
@@ -165,18 +165,20 @@ NOTE: Selector functions will be used outside the duck folder, so they are part 
 This file, from a module perspective, behaves as the duck file form the original proposal.
 * It exports as default the reducer function of the duck.
 * It exports as named export the selectors and the operations.
-* Optionally, it exports the types if they are needed in other ducks.
+* Optionally, it exports the action types if they are needed in other ducks.
 ```javascript
 import reducer from "./reducers";
 
 import * as duckSelectors from "./selectors";
 import * as duckOperations from "./operations";
-import * as duckTypes from "./types";
+import * as duckActionTypes from "./action-types";
+import * as duckActions from "./actions";
 
 export {
+    duckActions,
     duckSelectors,
     duckOperations,
-    duckTypes
+    duckActionTypes
 };
 
 export default reducer;
@@ -203,6 +205,31 @@ describe( "duck reducer", function( ) {
         } );
     } );
 } );
+```
+
+### Typescript
+Your interface and type definitions must also be a part of your duck interface. I consider keeping them with the source generally a good practice. In order to allow import destructuring your duck must export them as named exports from index.ts. I usually find myself having interface definitions in three places: actions.ts (action interfaces), reducers.ts (state interfaces) and selectors.ts (selector interfaces). 
+Your duck might end up looking like this:
+```javascript
+import reducer from "./reducers";
+
+import * as duckSelectors from "./selectors";
+import * as duckOperations from "./operations";
+import * as duckActionTypes from "./action-types";
+import * as duckActions from "./actions";
+
+export {
+    duckActions,
+    duckSelectors,
+    duckOperations,
+    duckActionTypes
+};
+
+export { IActionInterface1, IActionInterface2 } from "./actions";
+export { ISelectorInterface1, ISelectorInterface2 } from "./selectors";
+export * from "./reducers"; // we can do this because we use default export for the reducer and there are no other named exports but interfaces
+
+export default reducer
 ```
 
 ### A word on abstractions!
