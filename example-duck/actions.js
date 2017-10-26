@@ -5,14 +5,14 @@ HINT: Always use functions for consistency, don't export plain objects
 
 */
 
-import * as types from "./types";
+import * as actionTypes from "./action-types";
 
 const quack = ( ) => ( {
-    type: types.QUACK
+    type: actionTypes.QUACK
 } );
 
 const swim = ( distance ) => ( {
-    type: types.SWIM,
+    type: actionTypes.SWIM,
     payload: {
         distance
     }

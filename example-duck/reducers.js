@@ -6,7 +6,7 @@ Based on the state shape, multiple reducers might be defined in this file, combi
 */
 
 import { combineReducers } from "redux";
-import * as types from "./types";
+import * as actionTypes from "./action-types";
 
 /* State Shape
 {
@@ -17,7 +17,7 @@ import * as types from "./types";
 
 const quackReducer = ( state = false, action ) => {
     switch( action.type ) {
-        case types.QUACK: return true;
+        case actionTypes.QUACK: return true;
         /* ... */
         default: return state;
     }
@@ -25,7 +25,7 @@ const quackReducer = ( state = false, action ) => {
 
 const distanceReducer = ( state = 0, action ) => {
     switch( action.type ) {
-        case types.SWIM: return state + action.payload.distance;
+        case actionTypes.SWIM: return state + action.payload.distance;
         /* ... */
         default: return state;
     }
