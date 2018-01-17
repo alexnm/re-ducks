@@ -162,9 +162,9 @@ export {
 NOTE: Selector functions will be used outside the duck folder, so they are part of the **interface** of the duck.
 
 ### Index
-This file, from a module perspective, behaves as the duck file form the original proposal.
-* It exports as default the reducer function of the duck.
-* It exports as named export the selectors and the operations.
+This file, from a module perspective, behaves as the duck file from the original proposal.
+* It exports, as default, the reducer function of the duck.
+* It exports, as named export, the selectors and the operations.
 * Optionally, it exports the types if they are needed in other ducks.
 ```javascript
 import reducer from "./reducers";
@@ -185,7 +185,7 @@ export default reducer;
 ### Tests
 One of the main advantages of `redux` is that you can easily do unit tests for your `reducers`, `action creators` and `selectors`. And with a small effort, you can do the same for the `operations`.
 
-Ultimately, this split proposed here is also helping you see what you need to test inside each duck. This example is using `mocha` and `expect.js`.
+Ultimately, the split proposed here also helps you see what you need to test inside each duck. This example is using `mocha` and `expect.js`.
 ```javascript
 import expect from "expect.js";
 import reducer from "./reducers";
